@@ -17,15 +17,3 @@
   padding:5px;
   background:#FFFFFF;
 }
-
-/* Stops thead repetition when window.print() */
-thead {
-  display: table-row-group;
-}
-
-table {
-  page-break-inside:auto
-}
-tr { page-break-inside:avoid;
-  page-break-after:auto
-}
