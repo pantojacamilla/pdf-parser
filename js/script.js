@@ -1,4 +1,6 @@
-var url = '../pdf-exemplo/impressao_cadastro_700000822051006.pdf';
+import mostraValorNaTabela from "./mostraValorNaTabela.js"
+
+let url = '../pdf-exemplo/impressao_cadastro_700000822051006.pdf';
 // var url = '../pdf-exemplo/impressao_cadastro_700501902050657.pdf';
 
 // The workerSrc property shall be specified.
@@ -37,6 +39,13 @@ loadingTask.promise.then((pdf) => {
   console.error(reason);
 });
 
+class Dado {
+  constructor(i, valor) {
+    this.i = i;
+    this.valor = valor;
+  }
+}
+
 /**
  * Retrieves the text of a specif page within a PDF Document obtained through pdf.js
  *
@@ -49,23 +58,28 @@ function getPageText(pageNum, PDFDocumentInstance) {
     PDFDocumentInstance.getPage(pageNum).then(function (pdfPage) {
       // The main trick to obtain the text of the PDF page, use the getTextContent method
       pdfPage.getTextContent().then(function (textContent) {
-        var textItems = textContent.items;
-        var finalString = "";
-
+        let textItems = textContent.items;
+        let finalString = "";
+        let objetoDados = [];
         // Concatenate the string of the item to the final string
         for (let i = 0; i < textItems.length; i++) {
           let item = textItems[i];
-
           if (item.str == 'DNV:') {
             break;
           }
 
-          finalString += (i) + ' ' + item.str + ' ' + '<br>';
+          if (i == 4 || i == 6 || i == 8 || i == 10
+            || i == 14 || i == 17 || i == 19 || i == 20
+            || i == 22 || i == 29) {
+            objetoDados.push(new Dado(i, item.str));
+          }
 
-          // if ((i + 1) % 2 == 1) {
-          //   finalString += '<br>';
-          // }
+          // finalString += (i) + ' ' + item.str + ' ' + '<br>';
         }
+
+        // função coloca valor na tabela
+        mostraValorNaTabela(objetoDados);
+
         // Solve promise with the text retrieven from the page
         resolve(finalString);
       });
