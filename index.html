@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/index.css">
+  <link rel="file icon" href="/img/favicon.ico" type="image/x-icon">
+  <title>Document</title>
+</head>
+
+<body>
+  <h1>PDF to Text</h1>
+
+  <div id="pdf-text">
+    <div id="loading-info">
+      Extraindo texto ... !
+    </div>
+  </div>
+  <table class="tabela">
+    <!-- <caption>Table 1</caption> -->
+    <thead>
+      <tr>
+        <th>Identificação única (código gerado pelo Inep)</th>
+        <th>Número do CPF</th>
+        <th>Data de Nascimento</th>
+        <th>Filiação 1</th>
+        <th>Filiação 2d</th>
+        <th>Sexo<br></th>
+        <th>Cor/Raça</th>
+        <th>Nacionalidade</th>
+        <th>País de nacionalidade</th>
+        <th>UF de Nascimento</th>
+        <th>Município de Nascimento</th>
+      </tr>
+    </thead>
+    <tbody id="valores-tabela">
+    </tbody>
+  </table>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.8.335/pdf.min.js"
+    integrity="sha512-SG4yH2eYtAR5eK4/VL0bhqOsIb6AZSWAJjHOCmfhcaqTkDviJFoar/VYdG96iY7ouGhKQpAg3CMJ22BrZvhOUA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.8.335/pdf.worker.min.js"
+    integrity="sha512-A7+amkzh0+2k5IVc5RRZ5vjeCaTm3mZlLQJwiYzS/wa0JyDD6bsrJMtE773tYByLH143/rDtD4+rrdXpt18q/Q=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <script src="/js/script.js"></script>
+</body>
+
+</html>
