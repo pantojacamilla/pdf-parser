@@ -4,10 +4,11 @@ const mostraValorNaTabela = (objetoDados) => {
 
   let municipio = objetoDados[8].valor;
   municipio = municipio.substr(0, municipio.indexOf(' '));
-  let uf = objetoDados[8].valor; 7
+  let uf = objetoDados[8].valor;
   uf = uf.substr(uf.indexOf('-') + 2, uf.length);
 
   row.innerHTML = `
+        <td>${objetoDados[10].valor}</td>
         <td>${objetoDados[9].valor}</td>
         <td>${objetoDados[0].valor}</td>
         <td>${objetoDados[3].valor}</td>
@@ -23,5 +24,5 @@ const mostraValorNaTabela = (objetoDados) => {
   tabela.appendChild(row);
 };
 
-// 4, 6, 8, 10, 14, 17, 19, 20, [22], 29
+// 4, 6, 8, 10, 14, 17, 19, 20, [22], 28, 29
 export default mostraValorNaTabela;

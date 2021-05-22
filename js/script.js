@@ -1,7 +1,7 @@
 import mostraValorNaTabela from "./mostraValorNaTabela.js"
 
-let url = '../pdf-exemplo/impressao_cadastro_700000822051006.pdf';
-// var url = '../pdf-exemplo/impressao_cadastro_700501902050657.pdf';
+// let url = '../pdf-exemplo/impressao_cadastro_700000822051006.pdf';
+let url = '../pdf-exemplo/impressao_cadastro_700501902050657.pdf';
 
 // The workerSrc property shall be specified.
 pdfjsLib.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.8.335/pdf.worker.min.js';
@@ -70,7 +70,7 @@ function getPageText(pageNum, PDFDocumentInstance) {
 
           if (i == 4 || i == 6 || i == 8 || i == 10
             || i == 14 || i == 17 || i == 19 || i == 20
-            || i == 22 || i == 29) {
+            || i == 22 || i == 28 || i == 29) {
             objetoDados.push(new Dado(i, item.str));
           }
 
