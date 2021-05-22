@@ -1,44 +1,37 @@
 import mostraValorNaTabela from "./mostraValorNaTabela.js"
 
-// let url = '../pdf-exemplo/impressao_cadastro_700000822051006.pdf';
-let url = '../pdf-exemplo/impressao_cadastro_700501902050657.pdf';
-
-// The workerSrc property shall be specified.
-pdfjsLib.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.8.335/pdf.worker.min.js';
-
-const loadingTask = pdfjsLib.getDocument(url);
-loadingTask.promise.then((pdf) => {
-
-  var pdfDocument = pdf;
-  var pagesPromises = [];
-
-  for (let i = 0; i < pdf.numPages; i++) {
-    // Required to prevent that i is always the total of pages
-    (function (pageNumber) {
-      pagesPromises.push(getPageText(pageNumber, pdfDocument));
-    })(i + 1);
-  }
-
-  Promise.all(pagesPromises)
-    .then(function (pagesText) {
-      // Remove loading
-      let loading_info = document.querySelector('#loading-info');
-      loading_info.remove();
-
-      // Render text
-      let pdf_text = document.querySelector('#pdf-text');
-
-      for (let i = 0; i < pagesText.length; i++) {
-        let texto = pagesText[i];
-        pdf_text.innerHTML = texto;
-      }
-    });
-
-}, function (reason) {
-  // PDF loading error
-  console.error(reason);
+document.querySelector('#saveToExcel').addEventListener('click', (event) => {
+  let table2excel = new Table2Excel();
+  table2excel.export(document.querySelectorAll('#tabela'));
 });
 
+document.querySelector('#pdfs').addEventListener('change', (event) => {
+  const arquivos = Array.from(event.target.files);
+
+  // The workerSrc property shall be specified.
+  pdfjsLib.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.8.335/pdf.worker.min.js';
+
+  for (let i = 0; i < arquivos.length; i++) {
+    const loadingTask = pdfjsLib.getDocument(`../pdf-exemplo/jose-expedito-magalhaes/${arquivos[i].name}`);
+    loadingTask.promise.then((pdf) => {
+
+      var pdfDocument = pdf;
+      var pagesPromises = [];
+
+      for (let i = 0; i < pdf.numPages; i++) {
+        // Required to prevent that i is always the total of pages
+        (function (pageNumber) {
+          pagesPromises.push(getPageText(pageNumber, pdfDocument));
+        })(i + 1);
+      }
+    }, function (reason) {
+      // PDF loading error
+      console.error(reason);
+    });
+
+  }
+  alert("TERMINOU");
+});
 class Dado {
   constructor(i, valor) {
     this.i = i;
@@ -61,6 +54,7 @@ function getPageText(pageNum, PDFDocumentInstance) {
         let textItems = textContent.items;
         let finalString = "";
         let objetoDados = [];
+
         // Concatenate the string of the item to the final string
         for (let i = 0; i < textItems.length; i++) {
           let item = textItems[i];

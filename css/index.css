@@ -1,4 +1,4 @@
-.tabela {
+#tabela {
   width:100%;
   height:100%;
   border:1px solid #C0C0C0;
@@ -6,14 +6,26 @@
   border-spacing:2px;
   padding:5px;
 }
-.tabela th {
+#tabela th {
   border:1px solid #C0C0C0;
   padding:5px;
   background:#F0F0F0;
 }
-.tabela td {
+#tabela td {
   border:1px solid #C0C0C0;
   text-align:left;
   padding:5px;
   background:#FFFFFF;
+}
+
+/* Stops thead repetition when window.print() */
+thead {
+  display: table-row-group;
+}
+
+table {
+  page-break-inside:auto
+}
+tr { page-break-inside:avoid;
+  page-break-after:auto
 }
