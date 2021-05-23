@@ -11,6 +11,8 @@ const mostraValorNaTabela = (objetoDados) => {
         <td>${objetoDados[10].valor}</td>
         <td>${objetoDados[9].valor}</td>
         <td>${objetoDados[0].valor}</td>
+        <td>${objetoDados[11].valor} ${objetoDados[12].valor}</td>
+        <td>${objetoDados[13].valor} ${objetoDados[14].valor} </td>
         <td>${objetoDados[3].valor}</td>
         <td>${objetoDados[1].valor}</td>
         <td>${objetoDados[2].valor}</td>
@@ -23,6 +25,6 @@ const mostraValorNaTabela = (objetoDados) => {
       `;
   tabela.appendChild(row);
 };
-
+// 56 57 e 59 60
 // 4, 6, 8, 10, 14, 17, 19, 20, [22], 28, 29
 export default mostraValorNaTabela;
