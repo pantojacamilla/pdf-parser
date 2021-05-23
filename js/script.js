@@ -15,8 +15,8 @@ document.querySelector('#pdfs').addEventListener('change', (event) => {
     const loadingTask = pdfjsLib.getDocument(`../pdf-exemplo/jose-expedito-magalhaes/${arquivos[i].name}`);
     loadingTask.promise.then((pdf) => {
 
-      var pdfDocument = pdf;
-      var pagesPromises = [];
+      let pdfDocument = pdf;
+      let pagesPromises = [];
 
       for (let i = 0; i < pdf.numPages; i++) {
         // Required to prevent that i is always the total of pages
@@ -30,7 +30,7 @@ document.querySelector('#pdfs').addEventListener('change', (event) => {
     });
 
   }
-  alert("TERMINOU");
+  alert("Todos os arquivos foram processados");
 });
 class Dado {
   constructor(i, valor) {
@@ -67,11 +67,9 @@ function getPageText(pageNum, PDFDocumentInstance) {
             || i == 22 || i == 28 || i == 29) {
             objetoDados.push(new Dado(i, item.str));
           }
-
-          // finalString += (i) + ' ' + item.str + ' ' + '<br>';
         }
 
-        // função coloca valor na tabela
+        // Mostra os valores da tabela na tela
         mostraValorNaTabela(objetoDados);
 
         // Solve promise with the text retrieven from the page
