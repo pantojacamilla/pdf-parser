@@ -32,6 +32,7 @@ document.querySelector('#pdfs').addEventListener('change', (event) => {
   }
   alert("Todos os arquivos foram processados");
 });
+
 class Dado {
   constructor(i, valor) {
     this.i = i;
@@ -64,7 +65,8 @@ function getPageText(pageNum, PDFDocumentInstance) {
 
           if (i == 4 || i == 6 || i == 8 || i == 10
             || i == 14 || i == 17 || i == 19 || i == 20
-            || i == 22 || i == 28 || i == 29) {
+            || i == 22 || i == 28 || i == 29 || i == 56
+            || i == 57 || i == 59 || i == 60) {
             objetoDados.push(new Dado(i, item.str));
           }
         }
