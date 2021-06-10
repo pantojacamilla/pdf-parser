@@ -12,7 +12,7 @@ document.querySelector('#pdfs').addEventListener('change', (event) => {
   pdfjsLib.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.8.335/pdf.worker.min.js';
 
   for (let i = 0; i < arquivos.length; i++) {
-    const loadingTask = pdfjsLib.getDocument(`../pdf-exemplo/jose-expedito-magalhaes/${arquivos[i].name}`);
+    const loadingTask = pdfjsLib.getDocument(`../pdf-exemplo/###########/###########/${arquivos[i].name}`);
     loadingTask.promise.then((pdf) => {
 
       let pdfDocument = pdf;
