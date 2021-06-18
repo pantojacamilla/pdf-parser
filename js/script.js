@@ -1,36 +1,46 @@
 import mostraValorNaTabela from "./mostraValorNaTabela.js"
 
-document.querySelector('#saveToExcel').addEventListener('click', (event) => {
+document.querySelector('#saveToExcel').addEventListener('click', () => {
   let table2excel = new Table2Excel();
   table2excel.export(document.querySelectorAll('#tabela'));
 });
 
 document.querySelector('#pdfs').addEventListener('change', (event) => {
-  const arquivos = Array.from(event.target.files);
+
 
   // The workerSrc property shall be specified.
   pdfjsLib.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.8.335/pdf.worker.min.js';
 
+  const arquivos = Array.from(event.target.files);
+
   for (let i = 0; i < arquivos.length; i++) {
-    const loadingTask = pdfjsLib.getDocument(`../pdf-exemplo/###########/###########/${arquivos[i].name}`);
-    loadingTask.promise.then((pdf) => {
+    const reader = new FileReader();
 
-      let pdfDocument = pdf;
-      let pagesPromises = [];
+    reader.onload = () => {
 
-      for (let i = 0; i < pdf.numPages; i++) {
-        // Required to prevent that i is always the total of pages
-        (function (pageNumber) {
-          pagesPromises.push(getPageText(pageNumber, pdfDocument));
-        })(i + 1);
-      }
-    }, function (reason) {
-      // PDF loading error
-      console.error(reason);
-    });
+      const typedArray = new Uint8Array(reader.result);
+      const loadingTask = pdfjsLib.getDocument(typedArray);
 
+      loadingTask.promise.then((pdf) => {
+
+        let pdfDocument = pdf;
+        let pagesPromises = [];
+
+        for (let i = 0; i < pdf.numPages; i++) {
+          // Required to prevent that i is always the total of pages
+          (function (pageNumber) {
+            pagesPromises.push(getPageText(pageNumber, pdfDocument));
+          })(i + 1);
+        }
+      }, function (reason) {
+
+        // PDF loading error
+        console.error(reason);
+      });
+    };
+
+    reader.readAsArrayBuffer(arquivos[i]);
   }
-  alert("Todos os arquivos foram processados");
 });
 
 class Dado {
