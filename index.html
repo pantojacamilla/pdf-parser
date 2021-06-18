@@ -7,22 +7,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="/css/index.css">
   <link rel="file icon" href="/img/favicon.ico" type="image/x-icon">
-  <title>Single PDF Parser</title>
+  <title>PDF PARSER</title>
 </head>
 
 <body>
-  <h1>PDF to Text</h1>
-
-  <div id="pdf-text">
-    <div id="loading-info">
-      Extraindo texto ... !
-    </div>
+  <div id="cabecalho">
+    <button id="saveToExcel">Save to Excel</button>
+    <input type="file" id="pdfs" accept="application/pdf" multiple>
+    <h1>PDF to Text</h1>
   </div>
   <table id="tabela">
     <!-- <caption>Table 1</caption> -->
     <thead>
       <tr>
-        <th>Identificação única <br> (código gerado pelo Inep)</th>
+        <th>CNS</th>
         <th>Nome Completo</th>
         <th>Número do CPF</th>
         <th>Contato 1</th>
@@ -49,6 +47,8 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.8.335/pdf.worker.min.js"
     integrity="sha512-A7+amkzh0+2k5IVc5RRZ5vjeCaTm3mZlLQJwiYzS/wa0JyDD6bsrJMtE773tYByLH143/rDtD4+rrdXpt18q/Q=="
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <script src="/js/table2excel.js"></script>
 
   <script type="module" src="/js/script.js"></script>
   <script type="module" src="/js/mostraValorNaTabela.js"></script>
